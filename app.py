@@ -4,9 +4,9 @@ import time
 
 st.set_page_config(page_title="Laberinto DFS/BFS", page_icon="🧩", layout="centered")
 
-# ---------------------------
-# Constantes de celdas
-# ---------------------------
+
+//Constantes de celdas
+
 EMPTY, WALL, START, END, PATH, VISITED = 0, 1, 2, 3, 4, 5
 
 CELL_STYLES = {
@@ -21,9 +21,9 @@ CELL_STYLES = {
 DEFAULT_SIZE = 10
 
 
-# ---------------------------
-# Estado inicial
-# ---------------------------
+
+//Estado inicial
+
 def nueva_grilla(size):
     return [[EMPTY for _ in range(size)] for _ in range(size)]
 
@@ -40,9 +40,9 @@ if "result" not in st.session_state:
     st.session_state.result = None  # dict con path, visited_order, found, steps
 
 
-# ---------------------------
-# Lógica de algoritmos
-# ---------------------------
+
+//Lógica de algoritmos
+
 def vecinos(pos, size):
     r, c = pos
     for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
@@ -106,9 +106,9 @@ def reconstruir(came_from, start, end, visited_order):
     return {"found": True, "path": path, "visited_order": visited_order, "steps": len(visited_order)}
 
 
-# ---------------------------
-# Interfaz
-# ---------------------------
+
+//Interfaz
+
 st.title("🧩 Laberinto: DFS vs BFS")
 st.caption("Dibuja tu propio laberinto, elige el algoritmo y descubre si encuentra la salida.")
 
@@ -155,9 +155,9 @@ with st.sidebar:
         """
     )
 
-# ---------------------------
-# Manejo de clic en celda
-# ---------------------------
+
+//Manejo de clic en celda
+
 def click_celda(r, c):
     grid = st.session_state.grid
     valor_actual = grid[r][c]
@@ -194,9 +194,9 @@ def click_celda(r, c):
     st.session_state.result = None  # invalidar resultado anterior
 
 
-# ---------------------------
-# Render de la grilla
-# ---------------------------
+
+//Render de la grilla
+
 size = st.session_state.size
 grid = st.session_state.grid
 result = st.session_state.result
@@ -215,9 +215,9 @@ for r in range(size):
             click_celda(r, c)
             st.rerun()
 
-# ---------------------------
-# Resolver
-# ---------------------------
+
+//Resolver
+
 if resolver_click:
     if st.session_state.start is None or st.session_state.end is None:
         st.error("Debes colocar un punto de inicio 🟩 y una meta 🟥 antes de resolver.")
@@ -232,9 +232,8 @@ if resolver_click:
         st.session_state.result = resultado
         st.rerun()
 
-# ---------------------------
-# Mostrar resultados
-# ---------------------------
+//Mostrar resultados
+
 if st.session_state.result:
     r = st.session_state.result
     st.divider()
